@@ -1,8 +1,8 @@
 # Test Developer BaritoTech
 Programming Language Used :
  
-FrontEnd Test [React Native]
+[FrontEnd Test](https://github.com/radenaryayusuf/testBIT-developer/tree/frontend) [React Native]
 
-BackEnd Test [Javascript]
+[BackEnd Test](https://github.com/radenaryayusuf/testBIT-developer/tree/backend) [Javascript]
 
 **_Thank You BaritoTechnologies_**
