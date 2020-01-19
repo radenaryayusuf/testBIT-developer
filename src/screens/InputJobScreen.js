@@ -18,33 +18,35 @@ class InputJobScreen extends Component{
         };
       }
       componentDidMount(){
-          let data = this.props.dataJob.filter(x => x.id == this.props.navigation.state.params.id)
+          let data = this.props.dataJob.filter(x => x.id === this.props.navigation.state.params.id);
         //   console.warn(data)
           if (data.length > 0){
+              // eslint-disable-next-line react/no-did-mount-set-state
               this.setState({
                   id: data[0].id,
                   finished: data[0].flag,
                   title: data[0].title,
                   body: data[0].body,
-              })
+              });
           }
         //   console.warn(this.state)
       }
       SubmitAddJob(){
         let data = {
-            id: this.state.id === 0 ? (this.props.dataJob ? this.props.dataJob[this.props.dataJob.length - 1].id : 1) : this.state.id,
+            id: this.state.id === 0 ? (this.props.dataJob[0] !== undefined ? this.props.dataJob[this.props.dataJob.length - 1].id + 1 : 1) : this.state.id,
             title: this.state.title,
             body: this.state.body,
             flag: this.state.finished,
 
         };
+        // console.warn(data.id)
         // console.warn("data sebelum dispatch",data)
-        if(this.state.id === 0){
+        if (this.state.id === 0){
             this.props.dispatch({
                 type: JOB_ADD,
                 data,
             });
-        }else{
+        } else {
             this.props.dispatch({
                 type: JOB_UPDATE,
                 data,
@@ -82,8 +84,8 @@ class InputJobScreen extends Component{
                         <Label>Description</Label>
                         <Input value={body} onChangeText={(value) => this.setState({body: value})} />
                     </Item>
-                    <ListItem onPress={() => {this.setState({finished: !finished})}}>
-                        <CheckBox onPress={() => {this.setState({finished: !finished})}} checked={finished} />
+                    <ListItem onPress={() => {this.setState({finished: !finished});}}>
+                        <CheckBox onPress={() => {this.setState({finished: !finished});}} checked={finished} />
                         <Body>
                             <Text>Finished</Text>
                         </Body>

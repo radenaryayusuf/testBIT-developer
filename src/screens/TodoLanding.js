@@ -15,7 +15,7 @@ import {
     getDataAllJob,
 } from '../services/redux/actions/jobAction';
 const Row = ({ item, navigation }) => (
-    <RectButton style={style.rectButton} onPress={() => navigation.navigate('InputJobScreen',{id: item.id, title: item.title, body: item.body, flag: item.flag})}>
+    <RectButton style={style.rectButton} onPress={() => {navigation.navigate('InputJobScreen',{id: item.id, title: item.title, body: item.body, flag: item.flag}), console.warn(item.id)}}>
       <Text style={style.fromText}>{item.title} {item.flag ? '[FINISHED]' : ''}</Text>
       <Text numberOfLines={2} style={[style.messageText,{textDecorationLine: item.flag ? 'line-through' : 'none', textDecorationStyle:item.flag ? 'solid' : null}]} >
         {item.body}
@@ -62,21 +62,22 @@ class TodoLanding extends Component{
                 {
                     this.props.loader ? 
                     <Spinner color='blue'/> :
-                    
+
                     <FlatList
                     data={this.props.dataJob}
                     ItemSeparatorComponent={() => <View style={style.separator} />}
                     renderItem={({ item, index }) => (
-                        
+
                     <SwipeableRow item={item} index={index} isLast={index === this.props.dataJob.length - 1} navigation={this.props.navigation} />
                     )}
                     keyExtractor={(item, index) => `message ${index}`}
                 />
                 }
-                
+
                 <Fab
                 active={this.state.active}
                 direction="up"
+                // eslint-disable-next-line react-native/no-inline-styles
                 style={{ backgroundColor: '#5067FF' }}
                 position="bottomRight"
                 onPress={() => 
