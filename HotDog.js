@@ -19,7 +19,6 @@ index = (inputUsr) =>{
             if (mathesVal !== null) {
                 if (mathesVal.length > 0) {
 
-                    
                     if (dictmini.length - mathesVal.length <= 1) {
                         loop3:
                         for(let z = i; z < dictionary.length; z++){
@@ -33,7 +32,7 @@ index = (inputUsr) =>{
                             if (resultValidation) {
                                 resultArr.push(z);
                                 break loop2;
-                            }   
+                            }
                         }
                         dictionary.splice(i,0,inputArr[x]);
                         resultArr.push(i);
@@ -44,12 +43,16 @@ index = (inputUsr) =>{
             }
         }
     }
-    let sortingindexres = resultArr.sort(
-        (a,b) =>{
-            return a-b;
-        }
-    );
-    return dictionary.slice(sortingindexres[0],sortingindexres[sortingindexres.length-1]+1);
+    if(resultArr.length >= inputArr.length){
+        let sortingindexres = resultArr.sort(
+            (a,b) =>{
+                return a-b;
+            }
+        );
+        return dictionary.slice(sortingindexres[0],sortingindexres[sortingindexres.length-1]+1);
+    }else{
+        return '<no way>'
+    }
 }
 
 
